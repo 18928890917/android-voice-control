@@ -1,0 +1,165 @@
+apply plugin: 'com.android.application'
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+repositories {
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.1'
+    defaultConfig {
+        applicationId "com.hnxy.xiangyuan"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 2
+        versionName "1.1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    //执行lint检查，有任何的错误或者警告提示，都会终止构建，我们可以将其关掉。
+    lintOptions {
+        abortOnError false
+    }
+    //签名
+//    signingConfigs {
+//        debug {
+//
+//        }
+//        release {// 自己的签名文件
+//            storeFile file("doc/****.jks")
+//            storePassword "******"
+//            keyAlias "******"
+//            keyPassword "******"
+//        }
+//    }
+    //默认的配置
+    defaultConfig {
+        versionName '1.4.0'
+    }
+    //构建类型
+    buildTypes {
+        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //混淆
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+
+            // 移除无用的resource文件
+            shrinkResources true
+            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明，后一个文件是自己的定义混淆文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+//            signingConfig signingConfigs.release
+            //打包自动修改包名
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为guangfu_V1.0.0_xx-xx_xxxx.apk
+                        def fileName = "guangfu_V${defaultConfig.versionName}_${releaseTime()}.apk"
+//                        def fileName = "guangfu_V${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk" //多渠道打包 备用
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+
+
+                }
+            }
+            //渠道Flavors，配置不同风格的app,友盟渠道统计时用到
+//    productFlavors {
+//        "offical" {}
+//        "360" {}
+//        yingyongbao {}
+//        wandoujia {}
+//        baidu {}
+//        "91" {}
+//    }
+
+            sourceSets {
+                main {
+                    jniLibs.srcDirs = ['libs']
+                }
+            }
+            /** 打包检查过滤 */
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
+            /** aar */
+            repositories {
+                flatDir {
+                    dirs 'libs'
+                }
+            }
+        }
+
+        dependencies {
+            compile fileTree(include: ['*.jar'], dir: 'libs')
+            androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+                exclude group: 'com.android.support', module: 'support-annotations'
+            })
+            compile 'com.android.support:appcompat-v7:25.3.1'
+            compile 'com.android.support.constraint:constraint-layout:1.0.2'
+            testCompile 'junit:junit:4.12'
+            /** gson */
+            compile 'com.google.code.gson:gson:2.7'
+            /** imageloader */
+            compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
+            /** okhttp */
+            compile 'com.squareup.okhttp3:okhttp:3.4.1'
+            /** 框架库 */
+            compile 'com.jingyu.android:utils:1.0.0'
+            compile project(':ptr')
+            /** 图表库 */
+            compile project(':xclCharts')
+            /** 添加head foot的adapter*/
+            compile 'com.songhang:smart-headerfooter-recyclerview:1.0.1'
+            /** 图表库 */
+            compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+            /** 圆环  https://github.com/lingochamp/MagicProgressWidget */
+            compile 'com.liulishuo.magicprogresswidget:library:1.0.9'
+            compile 'com.android.support:recyclerview-v7:25.3.1'
+            compile 'com.android.support:cardview-v7:25.3.1'
+
+            /**
+             *compile 'com.android.support:percent:25.3.1'
+             * compile 'com.android.support:design:25.3.1'
+             */
+
+
+        }
+
+        //debug，默认包含此类型，参数都是默认的
+        debug{
+            //这里就以debug为例，这里的语法在release和自定义中也是支持的
+            debuggable true //默认false,是否开启断点调试
+            jniDebuggable true //默认false,是否开启jni的断点调试
+
+//            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明，后一个文件是自己的定义混淆文件
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+//        signingConfig signingConfigs.config //配置签名方式，这里配置会覆盖defaultConfig中配置的签名方式
+//        renderscriptDebuggable true //默认false,是否开启 renderscript 断点调试
+//        renderscriptOptimLevel 2 //renderscript的版本号
+//        minifyEnabled true //默认false,是否混淆的开关
+//        pseudoLocalesEnabled true //默认false,是否支持本地化整理
+//        applicationIdSuffix '.test' //applicationId的后缀,相当于更改了applicationId,可以认为是一个新的应用
+//        versionNameSuffix '.520' //版本名的后缀
+//        zipAlignEnabled false //默认true,是否进行zip align优化
+
+            //--------------------
+//        buildConfigField "boolean", "IS_DEBUG", "true"//为BuildConfig类创建一个常量,类型为boolean,变量名为IS_DEBUG,值为true
+//        resValue "string", "name", "value" //在strings.xml中创建一个名为name,值为value的一个字符串资源
+        }
+
+    }
+
+}

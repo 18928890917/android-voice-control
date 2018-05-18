@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/green_title</color>
+    <color name="colorPrimaryDark">@color/green_title</color>
+    <color name="colorAccent">@color/green_title</color>
+<!--
+    <color name="colorAccent">#FF4081</color>
+-->
+    <color name="green_dzzs">#00B450</color>
+    <color name="green_zcdz">#00DB9A</color>
+    <color name="gray_dddz">#888888</color>
+    <color name="red_lxdz">#E0000C</color>
+
+    <color name="red_AC001A">#AC001A</color>
+    <color name="red_ab2b2b">#ab2b2b</color>
+    <color name="red_f64e45">#f64e45</color>
+    <color name="red_FF5555">#FF5555</color>
+    <color name="red_FF4F43">#FF4F43</color>
+    <color name="yellow_FFA71D">#FFA71D</color>
+    <color name="gray_FAFAFA">#FAFAFA</color>
+    <color name="red_FBFBFB">#FBFBFB</color>
+    <color name="gray_FBFBFB">#FBFBFB</color>
+    <color name="gray_FDFDFD">#FDFDFD</color>
+    <color name="gray_f7f7f7">#f7f7f7</color>
+    <color name="c_ffffff">#ffffff</color>
+    <color name="c_white_ffffff">#ffffff</color>
+    <color name="gray_activity_bg">#ececec</color>
+    <color name="gray_FDF5E3">#FDF5E3</color>
+    <color name="gray_C9C9C9">#C9C9C9</color>
+    <color name="black_AAAAAA">#AAAAAA</color>
+    <color name="gray_bdbdbd">#bdbdbd</color>
+    <color name="gray_909090">#909090</color>
+    <color name="gray_A7A7A7">#A7A7A7</color>
+    <color name="gray_999999">#999999</color>
+    <color name="gray_888888">#888888</color>
+    <color name="black_222222">#222222</color>
+    <color name="black_262626">#262626</color>
+    <color name="black_2a2a2a">#2a2a2a</color>
+    <color name="black_2e2e2e">#2e2e2e</color>
+    <color name="green_383838">#383838</color>
+    <color name="gray_44484C">#44484C</color>
+    <color name="gray_4e535f">#4e535f</color>
+    <color name="gray_555555">#555555</color>
+    <color name="gray_848484">#848484</color>
+    <color name="black_707070">#707070</color>
+    <color name="gray_595959">#595959</color>
+    <color name="black_242549">#242549</color>
+    <color name="green_0ECB00">#0ECB00</color>
+    <color name="green_46E600">#46E600</color>
+    <color name="green_00B450">#00B450</color>
+    <color name="green_title">#00B450</color>
+    <color name="green_status_bar">#a000B450</color>
+    <color name="c_339c77">#339c77</color>
+    <color name="green_339c77">#339c77</color>
+    <color name="green_37B488">#37B488</color>
+    <color name="green_2ba177">#2ba177</color>
+    <color name="green_a1f6b4">#a1f6b4</color>
+    <color name="blue_1552b7">#1552b7</color>
+    <color name="blue_464AD3">#464AD3</color>
+    <color name="blue_39ADFF">#39ADFF</color>
+    <!--小面积使用，用于突出的文字、按钮和icon。如重要按钮、价格、标签栏图标选中状态等-->
+    <color name="green_37b488">#37b488</color>
+    <!--重要文字，用于普通级段落文字，标签栏等。如文字标题、商品信息、消息文字、资料介绍-->
+    <color name="black_2f2f2f">#2f2f2f</color>
+    <!--用于次要文字、文字说明、引导文字等。如商品信息、消息文字、资料介绍-->
+    <color name="black_848484">#848484</color>
+    <!--用于分割线 20160921 cecece再次修改为DFDFDF-->
+    <color name="gray_dfdfdf">#dfdfdf</color>
+    <!--用于分割模块底色 20160921 再次修改为f8f8f8-->
+    <color name="gray_f8f8f8">#f8f8f8</color>
+    <integer-array name="google_colors">
+        <item>@color/red</item>
+        <item>@color/blue</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+    </integer-array>
+
+</resources>
